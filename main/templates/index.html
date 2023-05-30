@@ -1,0 +1,41 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+        <title>PDF Reader</title>
+        
+        <!-- Bootstrap CSS -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+        
+        <!-- DevExtreme theme -->
+        <link rel="stylesheet" href="https://cdn3.devexpress.com/jslib/22.2.6/css/dx.light.css">
+    </head>
+    <body>
+        <form id="pdf-reader-form" class="p-4">
+            <div class="input-group">
+                <lable class="col-2">PDF File</lable>
+                <input class="form-control" id="file" type="file" accept=".pdf" />
+                <button class="btn btn-dark col-2" id="upload-pdf-button">Upload</button>
+            </div>
+        </form>
+
+        <div id="pdf-table-grid" class="mx-4"></div>
+
+        <!-- JQuery Library -->
+        <script src="https://code.jquery.com/jquery-3.7.0.min.js" integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g=" crossorigin="anonymous"></script>
+
+        <!-- Bootstrap JS Library -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+        <!-- DevExtreme Library -->
+        <script type="text/javascript" src="https://cdn3.devexpress.com/jslib/22.2.6/js/dx.all.js"></script>
+        <script src="{% static '/js/index.js' %}"></script>
+        <script>
+            pdfDataGrid([])
+        </script>
+    </body>
+</html>
