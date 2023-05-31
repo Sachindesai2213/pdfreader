@@ -29,4 +29,9 @@ And navigate to `http://127.0.0.1:8000`.
 
 Also, there is a addition library needed to be installed at your local PC `https://wkhtmltopdf.org/downloads.html` for HTML to PDF conversion with pdfkit python.
 
+`Mechanism:`
+1. Upload PDF File in the file field when you need to read data from.
+2. The files generated with updates made are saved in media folder.
+3. The updated data gets send to the frontend and gets displayed in the DxDatagrid.
+
 ![PDF Reader](https://github.com/Sachindesai2213/pdfreader/assets/64885520/624980c8-4516-4043-a38c-88d361a298ed)
