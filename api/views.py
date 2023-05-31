@@ -1,7 +1,9 @@
-from rest_framework.response import Response
-from rest_framework.decorators import api_view
-import tabula
 import json
+
+import pdfkit as pdf
+import tabula
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
 
 # Create your views here.
 
@@ -13,19 +15,26 @@ def pdf_reader_view(request):
         tables = tabula.read_pdf(
             file,
             pages="all",
-            lattice=True,
-            multiple_tables=False
+            lattice=True,  # Format based on table borders
+            multiple_tables=False  # To get table data continued on next line
         )
 
-        table = tables[0].rename(columns=lambda x: x.title().replace('.', ''))
-        table_data = json.loads(table.to_json(orient='records'))
+        # Select first table
+        table = tables[0]
 
-        tabula.convert_into(file, "media/output.csv", output_format="csv", pages="all", lattice=True)
+        # Select row with Description required to update
+        index_to_update = table[table['Description'] == 'Type of Tender'].index.to_list()[0]
 
-        for index, data in enumerate(table_data):
-            for key, value in data.items():
-                if 'value' in key.lower() and value and '120.14' in value:
-                    table_data[index][key] = 'Test'
+        # To update data in DataFrame. Will update data in last column against Type of Tender Description
+        table.at[index_to_update, table.columns[-1]] = 'new value'
 
-        table_data.to_html('f.html')
+        # To rename columns and convert DF to JSON for FrontEnd display
+        table_data = table.rename(columns=lambda x: x.title().replace('.', ''))
+        table_data = json.loads(table_data.to_json(orient='records'))
+
+        # Convert DataFrame to HTML
+        table.to_html('media/output.html', index=False)
+
+        # Convert HTML to PDF (https://wkhtmltopdf.org/downloads.html - Additional Support)
+        pdf.from_file('media/output.html', 'media/output.pdf')
         return Response(table_data)
