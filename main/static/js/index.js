@@ -2,7 +2,7 @@ const pdfDataGrid = (data) => {
     $("#pdf-table-grid").dxDataGrid({
         dataSource: data,
         paging: {
-            pageSize: 10,
+            pageSize: 20,
         },
         rowAlternationEnabled: true,
         showBorders: true,
@@ -20,9 +20,8 @@ $("#pdf-reader-form").submit((event) => {
         processData: false,
         contentType: false,
         success: (data) => {
-            console.log(JSON.parse(data));
             $("#pdf-table-grid").dxDataGrid({
-                dataSource: JSON.parse(data),
+                dataSource: data,
             })
         },
         error: (err) => {
