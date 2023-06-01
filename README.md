@@ -1,8 +1,10 @@
 # PDF Reader
 
-## Setup
+## Requirements - Python 3.9+, Java (for tabula-py), wkhtmltopdf to be installed on Local machine
 
-Developed with Python Version - 3.11
+Download link for wkhtmltopdf - `https://wkhtmltopdf.org/downloads.html` for HTML to PDF conversion with pdfkit python.
+
+## Setup
 
 The first thing to do is to clone the repository in your project folder:
 
@@ -26,8 +28,6 @@ Once `pip` has finished downloading the dependencies:
 (env)$ python manage.py runserver
 ```
 And navigate to `http://127.0.0.1:8000`.
-
-Also, there is a addition library needed to be installed at your local PC `https://wkhtmltopdf.org/downloads.html` for HTML to PDF conversion with pdfkit python.
 
 `Mechanism:`
 1. Upload PDF File in the file field when you need to read data from.
